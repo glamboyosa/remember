@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remember</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        cursor: pointer;
+      }
+      .flex-container {
+        display: flex;
+        flex-direction: row-reverse;
+      }
+      .flex-container-col {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+      .box {
+        width: 80px;
+        height: 80px;
+        border: 1px solid black;
+      }
+      .box.green {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="flex-container">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="flex-container-col">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="flex-container">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </main>
+    <script>
+      const boxes = [];
+
+      const main = document.querySelector("main");
+
+      main.addEventListener("click", (e) => {
+        const box = e.target;
+        if (box.tagName === "DIV" && box.classList.contains("box")) {
+          box.style.pointerEvents = "none";
+          box.classList.add("green");
+          boxes.push(box);
+          // we've filled in everything
+          if (boxes.length === 9) {
+            // every 300 ms remove in order it was entered in
+            const interval = setInterval(() => {
+              const box = boxes.shift();
+              box.classList.remove("green");
+              box.style.pointerEvents = "auto";
+              if (boxes.length === 0) {
+                clearInterval(interval);
+              }
+            }, 400);
+          }
+        } else {
+          return;
+        }
+      });
+    </script>
+  </body>
+</html>
