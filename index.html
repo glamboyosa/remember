@@ -54,28 +54,7 @@
 
       const main = document.querySelector("main");
 
-      main.addEventListener("click", (e) => {
-        const box = e.target;
-        if (box.tagName === "DIV" && box.classList.contains("box")) {
-          box.style.pointerEvents = "none";
-          box.classList.add("green");
-          boxes.push(box);
-          // we've filled in everything
-          if (boxes.length === 9) {
-            // every 300 ms remove in order it was entered in
-            const interval = setInterval(() => {
-              const box = boxes.shift();
-              box.classList.remove("green");
-              box.style.pointerEvents = "auto";
-              if (boxes.length === 0) {
-                clearInterval(interval);
-              }
-            }, 400);
-          }
-        } else {
-          return;
-        }
-      });
+      main.addEventListener("click", (e) => {});
     </script>
   </body>
 </html>
